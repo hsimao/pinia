@@ -2,8 +2,8 @@
 import { useUserStore } from "./stores/UserStore";
 import { useEventStore } from "./stores/EventStore";
 
-const { user, firstName } = useUserStore();
-const { numberOfEvents } = useEventStore();
+const userStore = useUserStore();
+const eventStore = useEventStore();
 </script>
 
 <template>
@@ -13,9 +13,9 @@ const { numberOfEvents } = useEventStore();
       <router-link :to="{ name: 'About' }">About</router-link>
       |
       <router-link :to="{ name: 'EventCreate' }">Create Event</router-link>
-      <p>Logged in as USER {{ user }}</p>
-      <p>firstName: {{ firstName }}</p>
-      <p>event length {{ numberOfEvents }}</p>
+      <p>Logged in as USER {{ userStore.user }}</p>
+      <p>firstName: {{ userStore.firstName }}</p>
+      <p>event length {{ eventStore.numberOfEvents }}</p>
     </div>
     <router-view />
   </div>
