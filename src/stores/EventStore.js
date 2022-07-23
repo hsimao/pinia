@@ -33,6 +33,15 @@ export const useEventStore = defineStore("CountStore", {
             throw error;
           });
       }
+    },
+    createEvent(event) {
+      return EventService.postEvent(event)
+        .then(() => {
+          this.events.push(event);
+        })
+        .catch((error) => {
+          throw error;
+        });
     }
   }
 });
