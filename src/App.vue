@@ -1,9 +1,14 @@
 <script setup>
 import { useUserStore } from "./stores/UserStore";
 import { useEventStore } from "./stores/EventStore";
+import { useCounterStore } from "./stores/CounterStore";
 
+useCounterStore;
+const counter = useCounterStore();
 const userStore = useUserStore();
 const eventStore = useEventStore();
+
+const addCount = () => counter.count++;
 </script>
 
 <template>
@@ -16,6 +21,10 @@ const eventStore = useEventStore();
       <p>Logged in as USER {{ userStore.user }}</p>
       <p>firstName: {{ userStore.firstName }}</p>
       <p>event length {{ eventStore.numberOfEvents }}</p>
+
+      <p>count: {{ counter.count }}</p>
+      <button @click="addCount">Add count</button><br />
+      <button @click="counter.increment">Add use increment</button>
     </div>
     <router-view />
   </div>
