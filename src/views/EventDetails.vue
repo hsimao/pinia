@@ -1,26 +1,22 @@
-<script>
-export default {
-  props: ['id'],
-  created() {
-    this.$store.dispatch('fetchEvent', this.id).catch(error => {
-      this.$router.push({
-        name: 'ErrorDisplay',
-        params: { error: error }
-      })
-    })
-  },
-  computed: {
-    event() {
-      return this.$store.state.event
-    }
-  }
-}
+<script setup>
+import { storeToRefs } from "pinia";
+import { useEventStore } from "../stores/EventStore";
+const props = defineProps({
+  id: String
+});
+
+const eventStore = useEventStore();
+const { event } = storeToRefs(eventStore);
+eventStore.fetchEvent(props.id);
 </script>
 
 <template>
   <div v-if="event">
     <h1>{{ event.title }}</h1>
-    <p>{{ event.time }} on {{ event.date }} @ {{ event.location }}</p>
+    <p>
+      {{ event.time }} on {{ event.date }} @
+      {{ event.location }}
+    </p>
     <p>{{ event.description }}</p>
   </div>
 </template>
