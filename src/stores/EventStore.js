@@ -1,3 +1,8 @@
 import { defineStore } from "pinia";
 
-const useEventStore = defineStore("CountStore", {});
+const useEventStore = defineStore("CountStore", {
+  state: () => ({
+    events: [],
+    event: {}
+  })
+});

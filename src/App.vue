@@ -1,3 +1,9 @@
+<script setup>
+import { useUserStore } from "./stores/UserStore";
+
+const userStore = useUserStore();
+</script>
+
 <template>
   <div id="app">
     <div id="nav">
@@ -5,6 +11,7 @@
       <router-link :to="{ name: 'About' }">About</router-link>
       |
       <router-link :to="{ name: 'EventCreate' }">Create Event</router-link>
+      <p>Logged in as USER {{ userStore.user }}</p>
     </div>
     <router-view />
   </div>
@@ -61,7 +68,7 @@ input {
   margin-bottom: 24px;
 }
 
-input[type='text'] {
+input[type="text"] {
   padding: 0px 10px;
 }
 
