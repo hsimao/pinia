@@ -1,8 +1,11 @@
 import { defineStore } from "pinia";
 
-const useEventStore = defineStore("CountStore", {
+export const useEventStore = defineStore("CountStore", {
   state: () => ({
     events: [],
     event: {}
-  })
+  }),
+  getters: {
+    numberOfEvents: (state) => state.events.length
+  }
 });
